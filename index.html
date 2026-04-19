@@ -1,0 +1,1918 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>体育期刊雷达 · Sports Journal Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ===== 配色：冷白极简（亮色默认） ===== */
+  :root {
+    --bg: #fafafa;
+    --bg-gradient-top: #fafafa;
+    --card: #ffffff;
+    --card-hover: #ffffff;
+    --ink: #0f1419;
+    --ink-soft: #3d4248;
+    --muted: #6b7078;
+    --soft: #aab0b8;
+    --accent: #0f1419;
+    --accent-light: #3d4248;
+    --accent-soft: #f0f2f5;
+    --accent-dark: #2a2f36;
+    --highlight: #c65d36;
+    /* 主题分组色（降饱和 5 色） */
+    --g-fatigue-ink: #8a3e1f; --g-fatigue-soft: #fcf1ea;
+    --g-train-ink:   #2d4a6b; --g-train-soft:   #eef3f9;
+    --g-sport-ink:   #365347; --g-sport-soft:   #eff4f0;
+    --g-physio-ink:  #4e3f5e; --g-physio-soft:  #f2eef6;
+    --g-clinic-ink:  #6f3f51; --g-clinic-soft:  #f7ecf0;
+    /* 兼容旧变量名 — 指向新主题色 */
+    --secondary: var(--g-sport-ink);   --secondary-soft: var(--g-sport-soft);
+    --purple:    var(--g-physio-ink);  --purple-soft:    var(--g-physio-soft);
+    --blue:      var(--g-train-ink);   --blue-soft:      var(--g-train-soft);
+    --rose:      var(--g-clinic-ink);  --rose-soft:      var(--g-clinic-soft);
+    --line: #e8eaed;
+    --line-strong: #d0d4d9;
+    --ok: #3f7553;
+    --warn: #a07a1e;
+    --err: #a94040;
+    --mark: #fff2c4;
+    --shadow-sm: none;
+    --shadow-md: none;
+    --shadow-lg: 0 8px 24px rgba(15, 20, 25, 0.08), 0 2px 6px rgba(15, 20, 25, 0.05);
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+    --serif: 'Noto Serif SC', "Source Han Serif SC", "思源宋体", "Songti SC", "SimSun", serif;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f1115;
+      --bg-gradient-top: #0f1115;
+      --card: #16191d;
+      --card-hover: #1a1d22;
+      --ink: #e7e9ec;
+      --ink-soft: #b8bcc2;
+      --muted: #7e838a;
+      --soft: #565a61;
+      --accent: #e7e9ec;
+      --accent-light: #b8bcc2;
+      --accent-soft: #22262b;
+      --accent-dark: #c8ccd1;
+      --highlight: #e8925f;
+      --g-fatigue-ink: #d69679; --g-fatigue-soft: #2a1f18;
+      --g-train-ink:   #90a9c4; --g-train-soft:   #1a2230;
+      --g-sport-ink:   #8fb0a1; --g-sport-soft:   #1b2621;
+      --g-physio-ink:  #b09cc0; --g-physio-soft:  #23202a;
+      --g-clinic-ink:  #c69ba9; --g-clinic-soft:  #2b2024;
+      --secondary: var(--g-sport-ink);   --secondary-soft: var(--g-sport-soft);
+      --purple:    var(--g-physio-ink);  --purple-soft:    var(--g-physio-soft);
+      --blue:      var(--g-train-ink);   --blue-soft:      var(--g-train-soft);
+      --rose:      var(--g-clinic-ink);  --rose-soft:      var(--g-clinic-soft);
+      --line: #2a2e34;
+      --line-strong: #3a3f46;
+      --ok: #8eb07a;
+      --warn: #e0b45a;
+      --err: #d47272;
+      --mark: #3a3320;
+      --shadow-sm: none;
+      --shadow-md: none;
+      --shadow-lg: 0 8px 28px rgba(0, 0, 0, 0.5), 0 2px 6px rgba(0, 0, 0, 0.4);
+    }
+  }
+  :root[data-theme="light"] {
+    --bg: #fafafa; --bg-gradient-top: #fafafa;
+    --card: #ffffff; --card-hover: #ffffff;
+    --ink: #0f1419; --ink-soft: #3d4248;
+    --muted: #6b7078; --soft: #aab0b8;
+    --accent: #0f1419; --accent-light: #3d4248;
+    --accent-soft: #f0f2f5; --accent-dark: #2a2f36;
+    --highlight: #c65d36;
+    --g-fatigue-ink: #8a3e1f; --g-fatigue-soft: #fcf1ea;
+    --g-train-ink: #2d4a6b; --g-train-soft: #eef3f9;
+    --g-sport-ink: #365347; --g-sport-soft: #eff4f0;
+    --g-physio-ink: #4e3f5e; --g-physio-soft: #f2eef6;
+    --g-clinic-ink: #6f3f51; --g-clinic-soft: #f7ecf0;
+    --secondary: var(--g-sport-ink); --secondary-soft: var(--g-sport-soft);
+    --purple: var(--g-physio-ink); --purple-soft: var(--g-physio-soft);
+    --blue: var(--g-train-ink); --blue-soft: var(--g-train-soft);
+    --rose: var(--g-clinic-ink); --rose-soft: var(--g-clinic-soft);
+    --line: #e8eaed; --line-strong: #d0d4d9;
+    --ok: #3f7553; --warn: #a07a1e; --err: #a94040;
+    --mark: #fff2c4;
+    --shadow-sm: none; --shadow-md: none;
+    --shadow-lg: 0 8px 24px rgba(15, 20, 25, 0.08), 0 2px 6px rgba(15, 20, 25, 0.05);
+  }
+  :root[data-theme="dark"] {
+    --bg: #0f1115; --bg-gradient-top: #0f1115;
+    --card: #16191d; --card-hover: #1a1d22;
+    --ink: #e7e9ec; --ink-soft: #b8bcc2;
+    --muted: #7e838a; --soft: #565a61;
+    --accent: #e7e9ec; --accent-light: #b8bcc2;
+    --accent-soft: #22262b; --accent-dark: #c8ccd1;
+    --highlight: #e8925f;
+    --g-fatigue-ink: #d69679; --g-fatigue-soft: #2a1f18;
+    --g-train-ink: #90a9c4; --g-train-soft: #1a2230;
+    --g-sport-ink: #8fb0a1; --g-sport-soft: #1b2621;
+    --g-physio-ink: #b09cc0; --g-physio-soft: #23202a;
+    --g-clinic-ink: #c69ba9; --g-clinic-soft: #2b2024;
+    --secondary: var(--g-sport-ink); --secondary-soft: var(--g-sport-soft);
+    --purple: var(--g-physio-ink); --purple-soft: var(--g-physio-soft);
+    --blue: var(--g-train-ink); --blue-soft: var(--g-train-soft);
+    --rose: var(--g-clinic-ink); --rose-soft: var(--g-clinic-soft);
+    --line: #2a2e34; --line-strong: #3a3f46;
+    --ok: #8eb07a; --warn: #e0b45a; --err: #d47272;
+    --mark: #3a3320;
+    --shadow-sm: none; --shadow-md: none;
+    --shadow-lg: 0 8px 28px rgba(0, 0, 0, 0.5), 0 2px 6px rgba(0, 0, 0, 0.4);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { overflow-anchor: none; }
+  html, body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.65;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 40px 28px 80px; position: relative; }
+
+  /* ===== 头部 ===== */
+  header { margin-bottom: 28px; }
+  .header-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  h1 {
+    font-family: var(--serif);
+    font-size: 34px;
+    font-weight: 600;
+    letter-spacing: -0.3px;
+    margin-bottom: 8px;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+  h1 .en {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--muted);
+    font-weight: 400;
+    letter-spacing: 0.8px;
+    margin-left: 10px;
+    font-style: italic;
+  }
+  .tagline {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .header-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  .icon-btn {
+    background: transparent;
+    border: 1px solid var(--line);
+    color: var(--ink-soft);
+    width: 38px;
+    height: 38px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.15s, color 0.15s;
+    font-family: inherit;
+  }
+  .icon-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  /* ===== 控制条 ===== */
+  .controls {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .controls select, .controls button {
+    font-family: inherit;
+    font-size: 13px;
+  }
+  .controls select {
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 8px 12px;
+    background: var(--bg);
+    color: var(--ink);
+    cursor: pointer;
+    transition: border-color 0.15s;
+  }
+  .controls select:focus,
+  .controls select:hover { outline: none; border-color: var(--accent); }
+  .btn-primary {
+    background: var(--ink);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color 0.15s;
+    font-weight: 500;
+  }
+  .btn-primary:hover {
+    background: var(--accent-dark);
+  }
+  .btn-primary:disabled {
+    background: var(--soft);
+    cursor: not-allowed;
+  }
+  .status {
+    color: var(--muted);
+    font-size: 13px;
+    flex: 1;
+    min-width: 140px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .status.err { color: var(--err); }
+  .status.ok { color: var(--ok); }
+  .trans-badge {
+    font-size: 11px;
+    color: var(--muted);
+    background: var(--bg);
+    padding: 3px 8px;
+    border-radius: 6px;
+    border: 1px solid var(--line);
+  }
+  .trans-badge .ok { color: var(--ok); }
+  .trans-badge .fail { color: var(--muted); }
+
+  /* ===== 粘性筛选栏 ===== */
+  .sticky-nav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    margin-bottom: 14px;
+    padding-top: 8px;
+    background: var(--bg);
+    max-height: calc(100vh - 80px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+  .sticky-nav.compact {
+    padding-top: 4px;
+  }
+  .filter-section {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 12px 18px;
+  }
+  .sticky-nav.compact .filter-section {
+    padding: 8px 14px;
+  }
+  .filter-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 6px 0;
+  }
+  .filter-row + .filter-row { border-top: 1px solid var(--line); }
+  .sticky-nav.compact .filter-row { padding: 3px 0; }
+  .filter-label {
+    flex-shrink: 0;
+    width: 44px;
+    font-size: 11px;
+    color: var(--muted);
+    padding-top: 7px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .sticky-nav.compact .filter-label {
+    padding-top: 4px;
+  }
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    flex: 1;
+  }
+  .chip {
+    border: 1px solid var(--line);
+    background: var(--bg);
+    color: var(--ink-soft);
+    padding: 5px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    line-height: 1.5;
+    cursor: pointer;
+    transition: border-color 0.15s, color 0.15s, background-color 0.15s;
+    font-family: inherit;
+    white-space: nowrap;
+    font-weight: 500;
+    box-sizing: border-box;
+    height: 28px;
+    display: inline-flex;
+    align-items: center;
+  }
+  .chip:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  .chip.active {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+  .chip .count {
+    opacity: 0.7;
+    margin-left: 5px;
+    font-size: 11px;
+    font-weight: 400;
+  }
+  .sticky-nav.compact .chip {
+    padding: 3px 10px;
+    height: 24px;
+  }
+
+  .chip.empty {
+    opacity: 0.38;
+    cursor: not-allowed;
+  }
+  .chip.empty:hover {
+    border-color: var(--line);
+    color: var(--ink-soft);
+  }
+
+  /* 筛选提示 */
+  .filter-hint {
+    font-size: 12px;
+    color: var(--muted);
+    padding: 2px 2px 6px;
+    letter-spacing: 0.2px;
+  }
+  .sticky-nav.compact .filter-hint { display: none; }
+
+  /* 期刊抽屉 */
+  .journal-wrap {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+  }
+  .journal-toggle {
+    border: 1px solid var(--line);
+    background: var(--bg);
+    color: var(--ink-soft);
+    padding: 5px 14px;
+    border-radius: 6px;
+    font-size: 12px;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 500;
+    height: 28px;
+    display: inline-flex;
+    align-items: center;
+    transition: border-color 0.15s, color 0.15s, background-color 0.15s;
+    white-space: nowrap;
+  }
+  .journal-toggle:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  .journal-toggle.has-selected {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-soft);
+  }
+  #journalChips {
+    width: 100%;
+    margin-top: 2px;
+    max-height: 30vh;
+    overflow-y: auto;
+  }
+  .sticky-nav.compact .journal-toggle {
+    padding: 3px 10px;
+    height: 24px;
+  }
+
+  /* 主题颜色分组 */
+  .chip[data-group="fatigue"]  { --cg: var(--g-fatigue-ink); --cgs: var(--g-fatigue-soft); }
+  .chip[data-group="train"]    { --cg: var(--g-train-ink);   --cgs: var(--g-train-soft); }
+  .chip[data-group="sport"]    { --cg: var(--g-sport-ink);   --cgs: var(--g-sport-soft); }
+  .chip[data-group="physio"]   { --cg: var(--g-physio-ink);  --cgs: var(--g-physio-soft); }
+  .chip[data-group="clinic"]   { --cg: var(--g-clinic-ink);  --cgs: var(--g-clinic-soft); }
+  .chip[data-group]:hover { border-color: var(--cg); color: var(--cg); }
+  .chip[data-group].active {
+    background: var(--cg);
+    border-color: var(--cg);
+    color: #fff;
+  }
+
+  /* ===== 汇总条 ===== */
+  .summary-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 4px;
+    font-size: 12px;
+    color: var(--muted);
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .summary-bar .left { display: flex; gap: 16px; align-items: center; }
+  .summary-bar label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+  }
+  .summary-bar input[type="checkbox"] { accent-color: var(--accent); cursor: pointer; }
+  .btn-small {
+    background: none;
+    border: 1px solid var(--line);
+    color: var(--muted);
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .btn-small:hover { color: var(--accent); border-color: var(--accent); }
+
+  /* ===== 论文卡 ===== */
+  .paper {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 20px 22px;
+    margin-bottom: 12px;
+    transition: border-color 0.18s ease;
+    position: relative;
+  }
+  .paper:hover {
+    border-color: var(--accent);
+  }
+  .paper.favorited {
+    border-left: 3px solid var(--highlight);
+  }
+  .paper-head {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    margin-bottom: 10px;
+  }
+  .paper-titles { flex: 1; min-width: 0; }
+  .paper-title {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.5;
+    margin-bottom: 5px;
+    color: var(--ink);
+    letter-spacing: -0.1px;
+  }
+  .paper-title-zh {
+    font-family: var(--serif);
+    font-size: 15px;
+    color: var(--ink-soft);
+    margin-bottom: 2px;
+    font-weight: 500;
+    line-height: 1.55;
+  }
+  .paper-title-zh.loading {
+    color: var(--muted);
+    font-style: italic;
+    font-size: 12px;
+    font-family: var(--sans);
+    font-weight: 400;
+  }
+  .paper-title-zh.loading::after {
+    content: '···';
+    animation: dots 1.5s infinite;
+  }
+  @keyframes dots {
+    0%,20% { content: '·'; }
+    40% { content: '··'; }
+    60%,100% { content: '···'; }
+  }
+  .paper-star {
+    background: none;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    color: var(--soft);
+    padding: 0 2px;
+    transition: color 0.15s, transform 0.15s;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+  .paper-star:hover { transform: scale(1.15); color: var(--highlight); }
+  .paper-star.on { color: var(--highlight); }
+  .paper-meta {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+  }
+  .paper-meta .journal {
+    color: var(--ink);
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .paper-meta .sep {
+    width: auto;
+    height: auto;
+    background: none;
+    color: var(--soft);
+  }
+  .paper-meta .sep::before { content: '·'; }
+  .paper-meta a {
+    color: var(--muted);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--soft);
+    transition: color 0.15s;
+  }
+  .paper-meta a:hover { color: var(--accent); border-color: var(--accent); }
+  .paper-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 2px;
+  }
+  .tag {
+    font-size: 11px;
+    padding: 2.5px 8px;
+    border-radius: 6px;
+    background: var(--accent-soft);
+    color: var(--ink-soft);
+    font-weight: 500;
+  }
+  .tag[data-group="fatigue"] { background: var(--g-fatigue-soft); color: var(--g-fatigue-ink); }
+  .tag[data-group="train"]   { background: var(--g-train-soft);   color: var(--g-train-ink); }
+  .tag[data-group="sport"]   { background: var(--g-sport-soft);   color: var(--g-sport-ink); }
+  .tag[data-group="physio"]  { background: var(--g-physio-soft);  color: var(--g-physio-ink); }
+  .tag[data-group="clinic"]  { background: var(--g-clinic-soft);  color: var(--g-clinic-ink); }
+  .tag.method {
+    background: transparent;
+    color: var(--ink-soft);
+    border: 1px solid var(--line);
+  }
+  .tag.journal {
+    background: transparent;
+    color: var(--ink-soft);
+    border: 1px solid var(--line);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .paper-abstract {
+    display: none;
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid var(--line);
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.75;
+  }
+  .paper.expanded .paper-abstract { display: block; }
+  .paper-expand {
+    margin-top: 8px;
+    font-size: 12px;
+    color: var(--muted);
+    cursor: pointer;
+    user-select: none;
+    display: inline-block;
+    padding: 2px 0;
+  }
+  .paper-expand:hover { color: var(--accent); }
+  .paper-abstract p { margin-bottom: 8px; }
+  .paper-abstract p:last-child { margin-bottom: 0; }
+
+  /* ===== 空/加载状态 ===== */
+  .empty, .loading-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px dashed var(--line-strong);
+    border-radius: 10px;
+    margin-top: 20px;
+  }
+  .loading-state .icon {
+    font-size: 40px;
+    margin-bottom: 14px;
+    display: block;
+  }
+  .loading-state .bar {
+    max-width: 420px;
+    margin: 18px auto 10px;
+    height: 6px;
+    background: var(--line);
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+  }
+  .loading-state .bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent-light));
+    transition: width 0.3s ease;
+    border-radius: 3px;
+    position: relative;
+    overflow: hidden;
+  }
+  .loading-state .bar-fill::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -40%; right: 0; bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
+    animation: shimmer 1.4s infinite;
+  }
+  @keyframes shimmer {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(300%); }
+  }
+  .loading-state .current {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 8px;
+  }
+
+  .banner {
+    background: color-mix(in srgb, var(--warn) 12%, var(--card));
+    border: 1px solid color-mix(in srgb, var(--warn) 30%, var(--line));
+    color: color-mix(in srgb, var(--warn) 80%, var(--ink));
+    padding: 10px 16px;
+    border-radius: 6px;
+    margin-bottom: 14px;
+    font-size: 13px;
+  }
+  .banner.err {
+    background: color-mix(in srgb, var(--err) 10%, var(--card));
+    border-color: color-mix(in srgb, var(--err) 25%, var(--line));
+    color: var(--err);
+  }
+
+  /* ===== 设置面板 ===== */
+  .modal-bg {
+    position: fixed;
+    inset: 0;
+    background: rgba(20, 15, 10, 0.45);
+    backdrop-filter: blur(4px);
+    z-index: 100;
+    display: none;
+    align-items: center;
+    justify-content: center;
+  }
+  .modal-bg.open { display: flex; }
+  .modal {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 26px 28px;
+    width: 92%;
+    max-width: 440px;
+    box-shadow: var(--shadow-lg);
+  }
+  .modal h2 {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--ink);
+  }
+  .modal p.hint {
+    color: var(--muted);
+    font-size: 13px;
+    margin-bottom: 18px;
+  }
+  .modal .field { margin-bottom: 14px; }
+  .modal label {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 5px;
+    display: block;
+    letter-spacing: 0.3px;
+  }
+  .modal input[type="text"], .modal input[type="password"] {
+    width: 100%;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 8px 12px;
+    background: var(--bg);
+    color: var(--ink);
+    font-size: 13px;
+    font-family: inherit;
+    transition: border-color 0.15s;
+  }
+  .modal input:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+  .modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  footer {
+    text-align: center;
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 40px;
+    line-height: 1.8;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+  }
+
+  @media (max-width: 720px) {
+    .wrap { padding: 28px 14px 60px; }
+    h1 { font-size: 25px; }
+    h1 .en { display: block; margin-left: 0; margin-top: 2px; }
+    .filter-label { width: 38px; font-size: 11px; }
+    .paper { padding: 16px 18px; }
+    .paper-title { font-size: 15px; }
+    .paper-title-zh { font-size: 14.5px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="header-row">
+      <div>
+        <h1>体育期刊雷达<span class="en">Sports Journal Radar</span></h1>
+        <p class="tagline">19 本顶级期刊的月度新论文聚合 · 按主题 / 方法 / 期刊分类</p>
+      </div>
+      <div class="header-actions">
+        <button class="icon-btn" id="themeBtn" title="切换主题">◐</button>
+        <button class="icon-btn" id="settingsBtn" title="高级设置">⚙</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="controls">
+    <select id="monthSelect"></select>
+    <button class="btn-primary" id="refreshBtn">↻ 拉取 / 刷新</button>
+    <span class="status" id="status">
+      <span id="statusText"></span>
+      <span class="trans-badge" id="transBadge" style="display:none"></span>
+    </span>
+  </div>
+
+  <div id="banner"></div>
+
+  <div id="stickySentinel" style="height:1px"></div>
+  <div class="sticky-nav" id="stickyNav">
+    <div class="filter-section">
+      <div class="filter-hint">多个筛选条件需同时满足</div>
+      <div class="filter-row">
+        <div class="filter-label">主题</div>
+        <div class="chips" id="topicChips"></div>
+      </div>
+      <div class="filter-row">
+        <div class="filter-label">方法</div>
+        <div class="chips" id="methodChips"></div>
+      </div>
+      <div class="filter-row">
+        <div class="filter-label">期刊</div>
+        <div class="journal-wrap" id="journalWrap">
+          <button class="journal-toggle" id="journalToggle">全部 19 本 ▾</button>
+          <div class="chips" id="journalChips" style="display:none"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="summary-bar">
+      <div class="left">
+        <span id="countText">共 0 篇</span>
+        <label><input type="checkbox" id="favOnly"> 仅看收藏 <span id="favCount">(0)</span></label>
+      </div>
+      <button class="btn-small" id="clearFilters">清空筛选</button>
+    </div>
+  </div>
+
+  <div id="papersList"></div>
+  <div id="emptyState"></div>
+
+  <footer>
+    数据源：NCBI PubMed · 翻译：腾讯 / Google / MyMemory / LibreTranslate 链式回退<br>
+    本地缓存，关闭浏览器不会丢失
+  </footer>
+</div>
+
+<!-- 设置面板 -->
+<div class="modal-bg" id="settingsModal">
+  <div class="modal">
+    <h2>高级设置</h2>
+    <p class="hint">填入百度翻译 API 凭证可获得更稳定的翻译（留空则使用免费链路）。<br>申请地址：<a href="https://fanyi-api.baidu.com/" target="_blank" style="color:var(--accent)">fanyi-api.baidu.com</a></p>
+    <div class="field">
+      <label>百度翻译 APPID</label>
+      <input type="text" id="baiduAppid" placeholder="可选">
+    </div>
+    <div class="field">
+      <label>百度翻译 密钥</label>
+      <input type="password" id="baiduKey" placeholder="可选">
+    </div>
+    <div class="modal-actions">
+      <button class="btn-small" id="settingsCancel">取消</button>
+      <button class="btn-primary" id="settingsSave">保存</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ============ 期刊元数据 ============
+const JOURNALS = [
+  { id: 'bjsm',      abbr: 'Br J Sports Med',              short: 'BJSM',      zh: '英国运动医学杂志',     group: 'core' },
+  { id: 'sm',        abbr: 'Sports Med',                    short: 'SportsMed', zh: '运动医学',            group: 'core' },
+  { id: 'msse',      abbr: 'Med Sci Sports Exerc',          short: 'MSSE',      zh: '运动医学与科学',       group: 'core' },
+  { id: 'jss',       abbr: 'J Sports Sci',                  short: 'JSS',       zh: '运动科学杂志',         group: 'core' },
+  { id: 'sjmss',     abbr: 'Scand J Med Sci Sports',        short: 'SJMSS',     zh: '斯堪的纳维亚运动医学', group: 'core' },
+  { id: 'jshs',      abbr: 'J Sport Health Sci',            short: 'JSHS',      zh: '体育与健康科学杂志',   group: 'core' },
+  { id: 'ijspp',     abbr: 'Int J Sports Physiol Perform',  short: 'IJSPP',     zh: '国际运动生理与表现',   group: 'physio' },
+  { id: 'ejap',      abbr: 'Eur J Appl Physiol',            short: 'EJAP',      zh: '欧洲应用生理学',       group: 'physio' },
+  { id: 'jap',       abbr: 'J Appl Physiol (1985)',         short: 'JAP',       zh: '应用生理学杂志',       group: 'physio' },
+  { id: 'jscr',      abbr: 'J Strength Cond Res',           short: 'JSCR',      zh: '力量与体能研究',       group: 'physio' },
+  { id: 'biolsport', abbr: 'Biol Sport',                    short: 'BiolSport', zh: '运动生物学',           group: 'physio' },
+  { id: 'jphysiol',  abbr: 'J Physiol',                     short: 'JPhysiol',  zh: '生理学杂志',           group: 'physio' },
+  { id: 'ajsm',      abbr: 'Am J Sports Med',               short: 'AJSM',      zh: '美国运动医学',         group: 'clinic' },
+  { id: 'jospt',     abbr: 'J Orthop Sports Phys Ther',     short: 'JOSPT',     zh: '骨科与运动物理治疗',   group: 'clinic' },
+  { id: 'cjsm',      abbr: 'Clin J Sport Med',              short: 'CJSM',      zh: '临床运动医学',         group: 'clinic' },
+  { id: 'jsms',      abbr: 'J Sci Med Sport',               short: 'JSMS',      zh: '科学与运动医学',       group: 'clinic' },
+  { id: 'physrep',   abbr: 'Physiol Rep',                   short: 'PhysRep',   zh: '生理学报告',           group: 'other' },
+  { id: 'frphys',    abbr: 'Front Physiol',                 short: 'FrontPhys', zh: '生理学前沿',           group: 'other' },
+  { id: 'frsal',     abbr: 'Front Sports Act Living',       short: 'FrontSAL',  zh: '运动与积极生活前沿',   group: 'other' },
+];
+
+// ============ 分类规则（V3 精简到 17 个主题，宽松匹配）============
+// 相比 V2：删除"水上项目"，新增"智能监控"，各主题关键词扩充以降低漏判
+// group 字段决定标签颜色：fatigue(暖橙) / train(蓝) / sport(绿) / physio(紫) / clinic(玫)
+const TOPIC_RULES = [
+  // ===== 疲劳/恢复 系列 =====
+  { id: 'fatigue',   name: '疲劳与恢复',     group: 'fatigue', kw: [
+    'athlete fatigue','exercise-induced fatigue','training fatigue','neuromuscular fatigue','central fatigue','peripheral fatigue','muscle fatigue','fatigue resistance','fatigue index','fatigue monitoring','fatigue recovery',
+    'hrv','heart rate variability','dfa alpha','dfa α','detrended fluctuation analysis','autonomic modulation','parasympathetic reactivation','vagal tone','autonomic recovery',
+    'physiological tremor','overtraining syndrome','overreaching','functional overreaching','non-functional overreaching',
+    'post-exercise recovery','active recovery','cold water immersion','contrast water therapy','massage therapy','compression garment','recovery strategy','recovery monitoring','recovery intervention','between-session recovery','foam rolling','sauna recovery',
+    'muscle damage','exercise-induced muscle damage','delayed onset muscle soreness','doms','creatine kinase response','blood lactate recovery'
+  ]},
+  { id: 'sleep',     name: '睡眠',           group: 'fatigue', kw: [
+    'sleep quality','sleep duration','sleep extension','sleep in athlete','sleep in athletes','athlete sleep','sleep restriction','sleep deprivation',
+    'actigraphy','circadian rhythm','sleep hygiene','polysomnography','total sleep time','sleep efficiency','napping','sleep monitoring','sleep-wake','rem sleep','wearable sleep'
+  ]},
+
+  // ===== 训练类 =====
+  { id: 'load',      name: '训练负荷',       group: 'train', kw: [
+    'training load','periodization','periodisation','load management','acute chronic workload','acute:chronic workload','acwr',
+    'session rpe','session-rpe','srpe','rating of perceived exertion',
+    'training monitoring','internal training load','external training load','training stress','training monotony','training strain','training volume','training intensity distribution','polarized training','polarised training','weekly training load','training dose','training response','training prescription'
+  ]},
+  { id: 'hiit',      name: 'HIIT/无氧',      group: 'train', kw: [
+    'high-intensity interval','high intensity interval','hiit','high intensity training','hit protocol','sprint interval training','repeated sprint','repeated-sprint ability','sprint performance','sprint ability',
+    'anaerobic capacity','anaerobic performance','wingate test','wingate anaerobic','tabata','interval training protocol'
+  ]},
+  { id: 'strength',  name: '力量与爆发',     group: 'train', kw: [
+    'strength training','resistance training','resistance exercise','power training','plyometric training','muscle hypertrophy','one repetition maximum','one-repetition maximum','1-rm','velocity-based training',
+    'jump performance','jump height','countermovement jump','squat jump','isometric strength','muscle power','power output','eccentric training',
+    'rate of force development','maximal strength','muscular strength','muscle strength','explosive strength','dynamic strength','bench press','squat performance'
+  ]},
+  { id: 'endurance', name: '耐力与有氧',     group: 'train', kw: [
+    'endurance training','endurance performance','endurance athlete','aerobic capacity','aerobic fitness','aerobic performance',
+    'vo2max','vo2 max','maximal oxygen uptake','maximal aerobic power','lactate threshold','anaerobic threshold','critical power','functional threshold power',
+    'cycling performance','running performance','marathon performance','triathlon','cross-country skiing','time trial performance','time-to-exhaustion','submaximal exercise','running economy','cycling economy','long-distance running','ultra-endurance'
+  ]},
+
+  // ===== 运动项目/动作 =====
+  { id: 'biomech',   name: '生物力学',       group: 'sport', kw: [
+    'biomechanic','kinematics','kinetics of movement','motion capture','motion analysis','gait analysis','running mechanics','running biomechanics','running gait','ground reaction force','joint angle','joint moment','force platform','stride length','stride kinematics','electromyography','surface electromyography','emg activity',
+    'movement analysis','movement pattern','biomechanical analysis','kinetic chain','landing mechanics','movement variability'
+  ]},
+  { id: 'perf',      name: '表现分析',       group: 'sport', kw: [
+    'performance analysis','match analysis','tactical analysis','team tactics','notational analysis','competition analysis','time-motion analysis','match running','technical performance','match demands','playing performance','game performance','sport performance analysis','team performance analysis','tactical behavior','position-specific','player performance','competitive performance'
+  ]},
+
+  // ===== 生理/生化 =====
+  { id: 'cardio',    name: '心血管/心肺',    group: 'physio', kw: [
+    'cardiovascular adaptation','cardiovascular response','cardiovascular risk','cardiovascular health','cardiac function','cardiac adaptation','cardiac remodeling','cardiac remodelling','cardiac output','left ventricular','ventricular function','arterial stiffness','pulse wave velocity','echocardiograph','cardiorespiratory fitness',
+    'exercise blood pressure','blood pressure response','resting heart rate','exercise-induced arrhythmia'
+  ]},
+  { id: 'metabolic', name: '代谢/内分泌',    group: 'physio', kw: [
+    'exercise metabolism','metabolic adaptation','metabolic response','metabolic rate','energy expenditure','oxygen cost',
+    'hormone response','hormonal response','testosterone response','cortisol response','insulin sensitivity','mitochondrial biogenesis','mitochondrial function','muscle glycogen','substrate oxidation','fat oxidation','glucose metabolism','endocrine response','endocrine profile','anabolic response','catabolic response','hormone concentration'
+  ]},
+  { id: 'env',       name: '环境/极端',      group: 'physio', kw: [
+    'heat stress','hot environment','heat acclimation','heat tolerance','heat adaptation','cold exposure','cold stress','cold acclimation','altitude training','altitude exposure','high altitude','hypoxia','hyperoxic','hyperbaric','acclimatization','acclimatisation','thermoregulation','heat illness','exercise in heat','exercise in cold','thermal stress','humidity exercise','living high'
+  ]},
+  { id: 'wearable',  name: '可穿戴/监测',    group: 'physio', kw: [
+    'wearable device','wearable sensor','wearable technology','wearable monitor','accelerometer','inertial measurement','inertial sensor',' imu ','imu sensor','smartwatch','fitness tracker','sensor technology','gps tracking','activity tracker','photoplethysmography','body sensor','continuous monitoring','optical sensor'
+  ]},
+  { id: 'aimonitor', name: '智能监控',       group: 'physio', kw: [
+    'machine learning','deep learning','neural network','artificial intelligence','ai-based','ai model',
+    'random forest','xgboost','support vector machine','svm classifier','gradient boosting',
+    'convolutional neural','lstm','recurrent neural','transformer model',
+    'predict injury','injury prediction','predicting injury',
+    'predict fatigue','fatigue prediction',
+    'predict performance','performance prediction',
+    'predictive model','prediction model','classification model','classifier performance',
+    'algorithm-based','data-driven approach','feature importance','feature selection'
+  ]},
+
+  // ===== 临床/人群 =====
+  { id: 'injury',    name: '损伤与康复',     group: 'clinic', kw: [
+    'sport injury','sports injury','athletic injury','exercise-related injury','injury prevention','injury risk','injury incidence','injury surveillance','injury epidemiology','overuse injury',
+    'rehabilitation after','rehabilitation in athlete','sports rehabilitation','rehabilitation protocol','physiotherapy in sport','return to play','return to sport',
+    'acl injury','acl reconstruction','anterior cruciate ligament','concussion','sports concussion','hamstring injury','tendinopathy','patellar tendinopathy','achilles tendon','stress fracture','musculoskeletal injury','ankle sprain','shoulder injury','knee injury','knee rehabilitation','groin injury','meniscus injury','rotator cuff'
+  ]},
+  { id: 'nutri',     name: '营养与补剂',     group: 'clinic', kw: [
+    'sports nutrition','athlete nutrition','nutritional supplementation','nutritional intervention','nutritional strategy','dietary intake of athlete','dietary intake','nutrition intervention','nutritional status','energy availability','energy intake','fluid intake','sports drink',
+    'hydration strategy','dehydration',
+    'ergogenic aid','caffeine supplementation','caffeine ingestion','creatine supplementation','beta-alanine supplementation','nitrate supplementation','nitrate intake','beetroot juice','carbohydrate intake','carbohydrate supplementation','protein supplementation','protein intake','protein synthesis','branched-chain amino','ketogenic diet','iron supplementation','vitamin d supplementation','omega-3 supplementation','bicarbonate supplementation','polyphenol supplementation','glycogen replenishment'
+  ]},
+  { id: 'psych',     name: '心理与行为',     group: 'clinic', kw: [
+    'sport psychology','athlete mental health','athlete motivation','athlete anxiety','athlete mood','athlete stress','competitive anxiety','competitive state anxiety','training adherence','exercise adherence','athlete burnout','self-efficacy in sport','athlete resilience','mental skill','imagery training','psychological response to training','psychological skill','psychological intervention','flow state','athlete wellbeing','athlete well-being','mental toughness','goal setting in sport','coach-athlete relationship'
+  ]},
+  { id: 'female',    name: '女性运动员',     group: 'clinic', kw: [
+    'female athlete','women athlete','women in sport','menstrual cycle','menstrual phase','menstrual status','menstruation and exercise','pregnancy exercise','exercise during pregnancy','postpartum exercise','oral contraceptive','hormonal contraceptive','estrogen and exercise','relative energy deficiency','female athlete triad','sex difference in exercise','amenorrhea in athlete','bone health in female'
+  ]},
+  { id: 'age',       name: '青少年/老年',    group: 'clinic', kw: [
+    'youth athlete','youth sport','pediatric athlete','adolescent athlete','young athlete','junior athlete','child athlete','growth and maturation','biological maturation','peak height velocity',
+    'master athlete','masters athlete','aging and exercise','aging and physical','older adult exercise','older active','older athlete','veteran athlete'
+  ]},
+];
+
+const METHOD_RULES = [
+  { id: 'rct',    name: 'RCT',        kw: ['randomized controlled','randomised controlled','randomized trial','randomised trial',' rct '], pt: ['Randomized Controlled Trial'] },
+  { id: 'meta',   name: 'Meta 分析',  kw: ['meta-analysis','metaanalysis','meta analysis'], pt: ['Meta-Analysis'] },
+  { id: 'sysrev', name: '系统综述',   kw: ['systematic review','prisma','scoping review'], pt: ['Systematic Review'] },
+  { id: 'review', name: '叙事综述',   kw: ['narrative review','literature review'], pt: ['Review'] },
+  { id: 'cohort', name: '纵向/队列',  kw: ['prospective cohort','longitudinal study','cohort study','follow-up study'], pt: [] },
+  { id: 'cross',  name: '横断面',     kw: ['cross-sectional','cross sectional'], pt: [] },
+  { id: 'case',   name: '个案',       kw: ['case report','case series','case study'], pt: ['Case Reports'] },
+];
+
+// ============ 存储 ============
+const CACHE_VERSION = 'sjr-v1';
+const KEY_PAPERS = (ym) => `${CACHE_VERSION}-papers-${ym}`;
+const KEY_TRANS = `${CACHE_VERSION}-translations`;
+const KEY_FAV = `${CACHE_VERSION}-favorites`;
+const KEY_STATE = `${CACHE_VERSION}-state`;
+const KEY_THEME = `${CACHE_VERSION}-theme`;
+const KEY_BAIDU = `${CACHE_VERSION}-baidu`;
+
+function loadJSON(key, fallback) {
+  try { return JSON.parse(localStorage.getItem(key)) ?? fallback; } catch(e) { return fallback; }
+}
+function saveJSON(key, val) {
+  try { localStorage.setItem(key, JSON.stringify(val)); }
+  catch(e) { console.warn(`saveJSON "${key}" 失败（可能超出 localStorage 配额）:`, e); }
+}
+
+let translations = loadJSON(KEY_TRANS, {});
+let failedTranslations = new Set();
+let favorites = new Set(loadJSON(KEY_FAV, []));
+let uiState = loadJSON(KEY_STATE, { topics: [], methods: [], journals: [], favOnly: false, expanded: {} });
+let baiduCreds = loadJSON(KEY_BAIDU, { appid: '', key: '' });
+let currentMonth = '';
+let currentPapers = [];
+let transStats = { ok: 0, fail: 0 };
+let observer = null;
+let translationPending = new Set();  // pmids currently being translated
+let batchTimer = null;
+let pendingBatch = [];
+
+// ============ 日期 ============
+function ym(d) { return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`; }
+function normalizeMonth(m) {
+  if (!m) return '';
+  const s = String(m).trim();
+  const n = parseInt(s, 10);
+  if (!isNaN(n) && n >= 1 && n <= 12) return String(n).padStart(2, '0');
+  const map = { jan:'01',feb:'02',mar:'03',apr:'04',may:'05',jun:'06',
+                jul:'07',aug:'08',sep:'09',oct:'10',nov:'11',dec:'12' };
+  return map[s.slice(0,3).toLowerCase()] || s;
+}
+function ymToRange(ymStr) {
+  const [y, m] = ymStr.split('-').map(Number);
+  const start = `${y}/${String(m).padStart(2,'0')}/01`;
+  const lastDay = new Date(y, m, 0).getDate();
+  const end = `${y}/${String(m).padStart(2,'0')}/${String(lastDay).padStart(2,'0')}`;
+  return { start, end };
+}
+function monthOptions() {
+  const opts = [];
+  const now = new Date();
+  for (let i = 0; i < 12; i++) {
+    const d = new Date(now.getFullYear(), now.getMonth() - i, 1);
+    opts.push({ value: ym(d), label: `${d.getFullYear()} 年 ${d.getMonth()+1} 月` });
+  }
+  return opts;
+}
+
+// ============ PubMed API ============
+const EUTILS = 'https://eutils.ncbi.nlm.nih.gov/entrez/eutils';
+
+async function fetchJson(url) {
+  const r = await fetch(url);
+  if (!r.ok) throw new Error(`HTTP ${r.status}`);
+  return r.json();
+}
+async function fetchText(url) {
+  const r = await fetch(url);
+  if (!r.ok) throw new Error(`HTTP ${r.status}`);
+  return r.text();
+}
+function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+async function searchJournal(journal, start, end) {
+  const term = `"${journal.abbr}"[Journal] AND ("${start}"[PDAT] : "${end}"[PDAT])`;
+  const url = `${EUTILS}/esearch.fcgi?db=pubmed&term=${encodeURIComponent(term)}&retmax=100&retmode=json`;
+  const j = await fetchJson(url);
+  return (j.esearchresult?.idlist) || [];
+}
+
+async function fetchDetails(pmids) {
+  if (pmids.length === 0) return [];
+  const url = `${EUTILS}/efetch.fcgi?db=pubmed&id=${pmids.join(',')}&rettype=abstract&retmode=xml`;
+  const xml = await fetchText(url);
+  return parseArticles(xml);
+}
+
+function parseArticles(xmlText) {
+  const doc = new DOMParser().parseFromString(xmlText, 'application/xml');
+  const nodes = doc.querySelectorAll('PubmedArticle');
+  return Array.from(nodes).map(a => {
+    const pmid = a.querySelector('MedlineCitation > PMID')?.textContent || '';
+    const title = (a.querySelector('ArticleTitle')?.textContent || '').trim();
+    const abstractTexts = Array.from(a.querySelectorAll('Abstract > AbstractText')).map(n => {
+      const label = n.getAttribute('Label');
+      const text = n.textContent.trim();
+      return label ? `${label}: ${text}` : text;
+    });
+    const abstract = abstractTexts.join('\n\n');
+    const authorNodes = Array.from(a.querySelectorAll('AuthorList > Author'));
+    const authors = authorNodes.map(au => {
+      const last = au.querySelector('LastName')?.textContent || '';
+      const initials = au.querySelector('Initials')?.textContent || '';
+      return `${last}${initials ? ' ' + initials : ''}`.trim();
+    }).filter(Boolean);
+    const journalAbbr = a.querySelector('Journal > ISOAbbreviation')?.textContent
+      || a.querySelector('MedlineJournalInfo > MedlineTA')?.textContent
+      || '';
+    // 优先 ArticleDate[DateType="Electronic"]（在线发表日期，与 [PDAT] 查询语义一致）
+    // fallback 到 JournalIssue.PubDate；否则会把"线上 2025/09 + 纸刊 2026/03"的论文显示成 2026/03
+    const articleDate = a.querySelector('Article > ArticleDate[DateType="Electronic"]')
+      || a.querySelector('Article > ArticleDate');
+    const issueDate = a.querySelector('Article > Journal > JournalIssue > PubDate');
+    const pubDate = articleDate || issueDate
+      || a.querySelector('PubmedData > History > PubMedPubDate[PubStatus="pubmed"]');
+    const y = pubDate?.querySelector('Year')?.textContent || '';
+    const m = normalizeMonth(pubDate?.querySelector('Month')?.textContent || '');
+    const d = pubDate?.querySelector('Day')?.textContent || '';
+    const doi = Array.from(a.querySelectorAll('ArticleIdList > ArticleId')).find(e => e.getAttribute('IdType') === 'doi')?.textContent || '';
+    const meshHeadings = Array.from(a.querySelectorAll('MeshHeadingList > MeshHeading'));
+    const mesh = [];
+    const meshMajor = [];
+    meshHeadings.forEach(h => {
+      const d = h.querySelector('DescriptorName');
+      if (!d) return;
+      const name = d.textContent;
+      mesh.push(name);
+      const descMajor = d.getAttribute('MajorTopicYN') === 'Y';
+      const qualMajor = Array.from(h.querySelectorAll('QualifierName'))
+        .some(q => q.getAttribute('MajorTopicYN') === 'Y');
+      if (descMajor || qualMajor) meshMajor.push(name);
+    });
+    const pubTypes = Array.from(a.querySelectorAll('PublicationTypeList > PublicationType')).map(p => p.textContent);
+    return { pmid, title, abstract, authors, journalAbbr, pubDate: { y, m, d }, doi, mesh, meshMajor, pubTypes };
+  });
+}
+
+// ============ 分类 ============
+// 策略：分字段打分（title 3 / MeSH Major 3 / MeSH 2 / abstract 1，阈值 ≥ 3）
+//       词边界匹配防止 substring 误判；命中词前 30 字符否定窗口防假阳性
+//       MeSH Major Topic 是 NLM 人工索引的核心主题，权威性最高
+function escapeRegex(s) {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+// 词边界 regex 全局缓存：同一关键词/MeSH term 只编译一次
+const _wordReCache = new Map();
+function wordRegex(s) {
+  const key = (s || '').trim().toLowerCase();
+  if (!key) return null;
+  if (_wordReCache.has(key)) return _wordReCache.get(key);
+  let re = null;
+  try { re = new RegExp(`\\b${escapeRegex(key)}\\b`); } catch (e) {}
+  _wordReCache.set(key, re);
+  return re;
+}
+function hasNegationBefore(text, idx) {
+  if (idx < 2) return false;
+  const before = text.slice(Math.max(0, idx - 30), idx);
+  return /\b(not|without|no|never|neither|nor|lack of|absence of|except|excluding|failed to)\s+(\S+\s+){0,3}$/.test(before);
+}
+function findKw(text, kw) {
+  const re = wordRegex(kw);
+  if (!re) return -1;
+  const m = re.exec(text);
+  return m ? m.index : -1;
+}
+// MeSH 短语与规则 kw 双向词边界匹配（regex 已缓存，不重复编译）
+function matchMeshAny(meshList, kwL) {
+  if (!meshList || meshList.length === 0) return false;
+  const kwRe = wordRegex(kwL);
+  for (const m of meshList) {
+    const ml = (m || '').toLowerCase().trim();
+    if (!ml) continue;
+    const meshRe = wordRegex(ml);
+    if (meshRe && meshRe.test(kwL)) return true;
+    if (kwRe && kwRe.test(ml)) return true;
+  }
+  return false;
+}
+function classify(paper) {
+  const title = (paper.title || '').toLowerCase();
+  const abs = (paper.abstract || '').toLowerCase();
+  const meshList = paper.mesh || [];
+  const meshMajorList = paper.meshMajor || [];
+
+  const topics = TOPIC_RULES.filter(r => {
+    if (r.exclude && r.exclude.some(k => (title + ' ' + abs).includes(k.toLowerCase()))) return false;
+    let titleHit = false, meshMajorHit = false, meshHit = false, absHit = false;
+    for (const kw of r.kw) {
+      const kwL = kw.toLowerCase().trim();
+      if (!meshMajorHit && matchMeshAny(meshMajorList, kwL)) meshMajorHit = true;
+      if (!titleHit) {
+        const ti = findKw(title, kwL);
+        if (ti >= 0 && !hasNegationBefore(title, ti)) titleHit = true;
+      }
+      if (!meshHit && matchMeshAny(meshList, kwL)) meshHit = true;
+      if (!absHit) {
+        const ai = findKw(abs, kwL);
+        if (ai >= 0 && !hasNegationBefore(abs, ai)) absHit = true;
+      }
+      if ((meshMajorHit || titleHit) && meshHit && absHit) break;
+    }
+    let score = 0;
+    if (meshMajorHit) score += 3;
+    if (titleHit) score += 3;
+    if (meshHit) score += 2;
+    if (absHit) score += 1;
+    return score >= 3;
+  }).map(r => r.id);
+
+  const methods = [];
+  METHOD_RULES.forEach(r => {
+    const ptHit = r.pt && r.pt.some(p => paper.pubTypes.includes(p));
+    if (ptHit) { methods.push(r.id); return; }
+    let hit = false;
+    for (const kw of r.kw) {
+      const kwL = kw.toLowerCase().trim();
+      if (findKw(title, kwL) >= 0) { hit = true; break; }
+      if (matchMeshAny(meshList, kwL)) { hit = true; break; }
+      const ai = findKw(abs, kwL);
+      if (ai >= 0 && !hasNegationBefore(abs, ai)) { hit = true; break; }
+    }
+    if (hit) methods.push(r.id);
+  });
+  if ((methods.includes('sysrev') || methods.includes('meta')) && methods.includes('review')) {
+    return { topics, methods: methods.filter(m => m !== 'review') };
+  }
+  return { topics, methods };
+}
+
+function reclassifyAll() {
+  currentPapers.forEach(p => {
+    const { topics, methods } = classify(p);
+    p.topics = topics;
+    p.methods = methods;
+    if (p.pubDate) p.pubDate.m = normalizeMonth(p.pubDate.m);
+  });
+}
+
+// ============ 翻译：多 API 链式回退 + 批量 ============
+function genTencentKey() {
+  const uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
+    const r = Math.random() * 16 | 0;
+    return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+  });
+  return `browser-chrome-130.0.0-Mac_OS_X-10.15.7-${uuid}-${Date.now()}`;
+}
+
+async function translateBatchTencent(texts) {
+  const resp = await fetch('https://transmart.qq.com/api/imt', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      header: { fn: 'auto_translation', client_key: genTencentKey() },
+      type: 'plain',
+      source: { lang: 'en', text_list: texts },
+      target: { lang: 'zh' }
+    })
+  });
+  if (!resp.ok) throw new Error('tencent http');
+  const data = await resp.json();
+  if (data.header?.ret_code !== 'succ' && !data.auto_translation) throw new Error('tencent bad');
+  const results = data.auto_translation;
+  if (!Array.isArray(results) || results.length !== texts.length) throw new Error('tencent mismatch');
+  return results;
+}
+
+async function translateOneGoogle(text) {
+  const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=zh-CN&dt=t&q=${encodeURIComponent(text)}`;
+  const resp = await fetch(url);
+  if (!resp.ok) throw new Error('google http');
+  const data = await resp.json();
+  if (!Array.isArray(data) || !Array.isArray(data[0])) throw new Error('google bad');
+  return data[0].map(seg => seg[0]).join('');
+}
+
+async function translateOneMyMemory(text) {
+  const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=en|zh-CN`;
+  const resp = await fetch(url);
+  if (!resp.ok) throw new Error('mm http');
+  const data = await resp.json();
+  const t = data.responseData?.translatedText;
+  if (!t || /mymemory warning|exceeded|limit/i.test(t)) throw new Error('mm quota');
+  return t;
+}
+
+async function translateOneLibre(text) {
+  const endpoints = [
+    'https://translate.argosopentech.com/translate',
+    'https://libretranslate.de/translate',
+  ];
+  for (const ep of endpoints) {
+    try {
+      const resp = await fetch(ep, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ q: text, source: 'en', target: 'zh', format: 'text' })
+      });
+      if (!resp.ok) continue;
+      const data = await resp.json();
+      if (data.translatedText) return data.translatedText;
+    } catch(e) {}
+  }
+  throw new Error('libre all fail');
+}
+
+async function translateOneBaidu(text) {
+  if (!baiduCreds.appid || !baiduCreds.key) throw new Error('no baidu');
+  const salt = String(Date.now());
+  const signStr = baiduCreds.appid + text + salt + baiduCreds.key;
+  const sign = await md5(signStr);
+  const u = `https://fanyi-api.baidu.com/api/trans/vip/translate?q=${encodeURIComponent(text)}&from=en&to=zh&appid=${baiduCreds.appid}&salt=${salt}&sign=${sign}`;
+  const proxy = `https://api.allorigins.win/raw?url=${encodeURIComponent(u)}`;
+  const resp = await fetch(proxy);
+  if (!resp.ok) throw new Error('baidu http');
+  const data = await resp.json();
+  if (!data.trans_result) throw new Error('baidu bad');
+  return data.trans_result.map(t => t.dst).join('');
+}
+
+// 纯 JS MD5（百度签名用）
+async function md5(str) {
+  // 用 SubtleCrypto 不支持 md5，用简化实现
+  function md5Hex(s) {
+    function rh(n) { let s="",j; for (j=0;j<=3;j++) s += ((n>>(j*8+4))&0x0F).toString(16) + ((n>>(j*8))&0x0F).toString(16); return s; }
+    function ad(x,y) { let l=(x&0xFFFF)+(y&0xFFFF), m=(x>>16)+(y>>16)+(l>>16); return (m<<16)|(l&0xFFFF); }
+    function rol(n,c) { return (n<<c)|(n>>>(32-c)); }
+    function cmn(q,a,b,x,s,t) { return ad(rol(ad(ad(a,q),ad(x,t)),s),b); }
+    function ff(a,b,c,d,x,s,t) { return cmn((b&c)|((~b)&d),a,b,x,s,t); }
+    function gg(a,b,c,d,x,s,t) { return cmn((b&d)|(c&(~d)),a,b,x,s,t); }
+    function hh(a,b,c,d,x,s,t) { return cmn(b^c^d,a,b,x,s,t); }
+    function ii(a,b,c,d,x,s,t) { return cmn(c^(b|(~d)),a,b,x,s,t); }
+    function sb(s) {
+      let nblk=((s.length+8)>>6)+1, b=new Array(nblk*16).fill(0), i;
+      for (i=0;i<s.length;i++) b[i>>2] |= s.charCodeAt(i)<<((i%4)*8);
+      b[i>>2] |= 0x80<<((i%4)*8); b[nblk*16-2]=s.length*8; return b;
+    }
+    const bytes = unescape(encodeURIComponent(s));
+    const x = sb(bytes);
+    let a=1732584193,b=-271733879,c=-1732584194,d=271733878,i;
+    for (i=0;i<x.length;i+=16) {
+      const oa=a,ob=b,oc=c,od=d;
+      a=ff(a,b,c,d,x[i],7,-680876936); d=ff(d,a,b,c,x[i+1],12,-389564586); c=ff(c,d,a,b,x[i+2],17,606105819); b=ff(b,c,d,a,x[i+3],22,-1044525330);
+      a=ff(a,b,c,d,x[i+4],7,-176418897); d=ff(d,a,b,c,x[i+5],12,1200080426); c=ff(c,d,a,b,x[i+6],17,-1473231341); b=ff(b,c,d,a,x[i+7],22,-45705983);
+      a=ff(a,b,c,d,x[i+8],7,1770035416); d=ff(d,a,b,c,x[i+9],12,-1958414417); c=ff(c,d,a,b,x[i+10],17,-42063); b=ff(b,c,d,a,x[i+11],22,-1990404162);
+      a=ff(a,b,c,d,x[i+12],7,1804603682); d=ff(d,a,b,c,x[i+13],12,-40341101); c=ff(c,d,a,b,x[i+14],17,-1502002290); b=ff(b,c,d,a,x[i+15],22,1236535329);
+      a=gg(a,b,c,d,x[i+1],5,-165796510); d=gg(d,a,b,c,x[i+6],9,-1069501632); c=gg(c,d,a,b,x[i+11],14,643717713); b=gg(b,c,d,a,x[i],20,-373897302);
+      a=gg(a,b,c,d,x[i+5],5,-701558691); d=gg(d,a,b,c,x[i+10],9,38016083); c=gg(c,d,a,b,x[i+15],14,-660478335); b=gg(b,c,d,a,x[i+4],20,-405537848);
+      a=gg(a,b,c,d,x[i+9],5,568446438); d=gg(d,a,b,c,x[i+14],9,-1019803690); c=gg(c,d,a,b,x[i+3],14,-187363961); b=gg(b,c,d,a,x[i+8],20,1163531501);
+      a=gg(a,b,c,d,x[i+13],5,-1444681467); d=gg(d,a,b,c,x[i+2],9,-51403784); c=gg(c,d,a,b,x[i+7],14,1735328473); b=gg(b,c,d,a,x[i+12],20,-1926607734);
+      a=hh(a,b,c,d,x[i+5],4,-378558); d=hh(d,a,b,c,x[i+8],11,-2022574463); c=hh(c,d,a,b,x[i+11],16,1839030562); b=hh(b,c,d,a,x[i+14],23,-35309556);
+      a=hh(a,b,c,d,x[i+1],4,-1530992060); d=hh(d,a,b,c,x[i+4],11,1272893353); c=hh(c,d,a,b,x[i+7],16,-155497632); b=hh(b,c,d,a,x[i+10],23,-1094730640);
+      a=hh(a,b,c,d,x[i+13],4,681279174); d=hh(d,a,b,c,x[i],11,-358537222); c=hh(c,d,a,b,x[i+3],16,-722521979); b=hh(b,c,d,a,x[i+6],23,76029189);
+      a=hh(a,b,c,d,x[i+9],4,-640364487); d=hh(d,a,b,c,x[i+12],11,-421815835); c=hh(c,d,a,b,x[i+15],16,530742520); b=hh(b,c,d,a,x[i+2],23,-995338651);
+      a=ii(a,b,c,d,x[i],6,-198630844); d=ii(d,a,b,c,x[i+7],10,1126891415); c=ii(c,d,a,b,x[i+14],15,-1416354905); b=ii(b,c,d,a,x[i+5],21,-57434055);
+      a=ii(a,b,c,d,x[i+12],6,1700485571); d=ii(d,a,b,c,x[i+3],10,-1894986606); c=ii(c,d,a,b,x[i+10],15,-1051523); b=ii(b,c,d,a,x[i+1],21,-2054922799);
+      a=ii(a,b,c,d,x[i+8],6,1873313359); d=ii(d,a,b,c,x[i+15],10,-30611744); c=ii(c,d,a,b,x[i+6],15,-1560198380); b=ii(b,c,d,a,x[i+13],21,1309151649);
+      a=ii(a,b,c,d,x[i+4],6,-145523070); d=ii(d,a,b,c,x[i+11],10,-1120210379); c=ii(c,d,a,b,x[i+2],15,718787259); b=ii(b,c,d,a,x[i+9],21,-343485551);
+      a=ad(a,oa); b=ad(b,ob); c=ad(c,oc); d=ad(d,od);
+    }
+    return rh(a)+rh(b)+rh(c)+rh(d);
+  }
+  return md5Hex(str);
+}
+
+// 翻译一批标题；返回 [{pmid, zh}] 数组（失败的 zh 为 null）
+async function translateBatchViaChain(items) {
+  const texts = items.map(it => it.title);
+
+  // 1) 百度（如果用户填了 key）
+  if (baiduCreds.appid && baiduCreds.key) {
+    try {
+      const results = [];
+      for (const t of texts) {
+        try { results.push(await translateOneBaidu(t)); } catch(e) { results.push(null); }
+      }
+      if (results.filter(Boolean).length >= texts.length * 0.5) {
+        return items.map((it, i) => ({ pmid: it.pmid, zh: results[i] }));
+      }
+    } catch(e) {}
+  }
+
+  // 2) 腾讯批量（最有效）
+  try {
+    const results = await translateBatchTencent(texts);
+    return items.map((it, i) => ({ pmid: it.pmid, zh: results[i] }));
+  } catch(e) {}
+
+  // 3) Google 单条（国内常失败）
+  try {
+    const results = [];
+    for (const t of texts) {
+      try { results.push(await translateOneGoogle(t)); }
+      catch(e) { results.push(null); }
+    }
+    if (results.filter(Boolean).length >= texts.length * 0.5) {
+      return items.map((it, i) => ({ pmid: it.pmid, zh: results[i] }));
+    }
+  } catch(e) {}
+
+  // 4) MyMemory 单条
+  try {
+    const results = [];
+    for (const t of texts) {
+      try { results.push(await translateOneMyMemory(t)); }
+      catch(e) { results.push(null); }
+      await sleep(150);
+    }
+    if (results.filter(Boolean).length >= 1) {
+      return items.map((it, i) => ({ pmid: it.pmid, zh: results[i] }));
+    }
+  } catch(e) {}
+
+  // 5) LibreTranslate
+  try {
+    const results = [];
+    for (const t of texts) {
+      try { results.push(await translateOneLibre(t)); }
+      catch(e) { results.push(null); }
+    }
+    return items.map((it, i) => ({ pmid: it.pmid, zh: results[i] }));
+  } catch(e) {}
+
+  return items.map(it => ({ pmid: it.pmid, zh: null }));
+}
+
+function queueForTranslation(pmid) {
+  if (translations[pmid] || failedTranslations.has(pmid) || translationPending.has(pmid)) return;
+  const paper = currentPapers.find(p => p.pmid === pmid);
+  if (!paper || !paper.title) return;
+  translationPending.add(pmid);
+  pendingBatch.push({ pmid, title: paper.title });
+  if (batchTimer) clearTimeout(batchTimer);
+  // 200ms 内聚合进入视口的多篇，一次性批量翻译
+  batchTimer = setTimeout(flushBatch, 200);
+  // 或者攒够 10 篇立刻发
+  if (pendingBatch.length >= 10) flushBatch();
+}
+
+async function flushBatch() {
+  if (batchTimer) { clearTimeout(batchTimer); batchTimer = null; }
+  if (pendingBatch.length === 0) return;
+  const batch = pendingBatch.splice(0);
+  const results = await translateBatchViaChain(batch);
+  results.forEach(({ pmid, zh }) => {
+    translationPending.delete(pmid);
+    const el = document.querySelector(`.paper[data-pmid="${pmid}"] .paper-title-zh`);
+    if (zh) {
+      translations[pmid] = zh;
+      transStats.ok += 1;
+      if (el) {
+        el.textContent = zh;
+        el.classList.remove('loading');
+      }
+    } else {
+      failedTranslations.add(pmid);
+      transStats.fail += 1;
+      if (el) el.remove();
+    }
+  });
+  saveJSON(KEY_TRANS, translations);
+  updateTransBadge();
+}
+
+function updateTransBadge() {
+  const el = document.getElementById('transBadge');
+  const total = transStats.ok + transStats.fail;
+  if (total === 0 && Object.keys(translations).length === 0) {
+    el.style.display = 'none';
+    return;
+  }
+  el.style.display = '';
+  const okNum = transStats.ok + Object.keys(translations).length - transStats.ok;
+  el.innerHTML = `翻译 <span class="ok">✓${Object.keys(translations).length}</span>${transStats.fail > 0 ? ` <span class="fail">✗${transStats.fail}</span>` : ''}`;
+}
+
+// ============ IntersectionObserver 懒加载 ============
+function setupObserver() {
+  if (observer) observer.disconnect();
+  observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const pmid = entry.target.dataset.pmid;
+        if (pmid) queueForTranslation(pmid);
+      }
+    });
+  }, { rootMargin: '400px 0px' });
+  document.querySelectorAll('.paper').forEach(el => observer.observe(el));
+}
+
+// ============ 主流程 ============
+async function fetchAll(force = false) {
+  const month = currentMonth;
+  const cacheKey = KEY_PAPERS(month);
+  if (!force) {
+    const cached = loadJSON(cacheKey, null);
+    if (cached && cached.papers) {
+      currentPapers = cached.papers;
+      reclassifyAll();
+      saveJSON(cacheKey, { papers: currentPapers, fetchedAt: cached.fetchedAt });
+      renderAll();
+      setupObserver();
+      setStatus(`${cached.papers.length} 篇 · 缓存于 ${new Date(cached.fetchedAt).toLocaleString('zh-CN')}`, 'ok');
+      return;
+    }
+  }
+
+  const range = ymToRange(month);
+  const btn = document.getElementById('refreshBtn');
+  btn.disabled = true;
+  btn.textContent = '加载中...';
+
+  const listEl = document.getElementById('papersList');
+  const emptyEl = document.getElementById('emptyState');
+  emptyEl.innerHTML = `
+    <div class="loading-state">
+      <span class="icon">📡</span>
+      <div>正在从 PubMed 拉取 ${JOURNALS.length} 本期刊数据...</div>
+      <div class="bar"><div class="bar-fill" id="loadFill" style="width:0%"></div></div>
+      <div class="current" id="loadCurrent">准备中...</div>
+    </div>`;
+  listEl.innerHTML = '';
+
+  const allPapers = [];
+  const failed = [];
+  for (let i = 0; i < JOURNALS.length; i++) {
+    const jnl = JOURNALS[i];
+    const cur = document.getElementById('loadCurrent');
+    const fill = document.getElementById('loadFill');
+    if (cur) cur.textContent = `${jnl.short} (${i+1}/${JOURNALS.length})`;
+    if (fill) fill.style.width = `${((i)/JOURNALS.length)*100}%`;
+    try {
+      const ids = await searchJournal(jnl, range.start, range.end);
+      await sleep(350);
+      if (ids.length > 0) {
+        for (let k = 0; k < ids.length; k += 30) {
+          const batch = ids.slice(k, k + 30);
+          const details = await fetchDetails(batch);
+          details.forEach(p => {
+            p.journalId = jnl.id;
+            const { topics, methods } = classify(p);
+            p.topics = topics;
+            p.methods = methods;
+          });
+          allPapers.push(...details);
+          await sleep(350);
+        }
+      }
+    } catch(e) {
+      console.error(`Failed ${jnl.short}:`, e);
+      failed.push(jnl.short);
+    }
+    // 流式渲染：每期刊完成后更新 currentPapers 让用户即时看到结果
+    // skipObserver 跳过 IntersectionObserver 重建，避免流式阶段的重复开销
+    if (allPapers.length > 0) {
+      const seen2 = new Set();
+      const snap = [];
+      for (const p of allPapers) if (!seen2.has(p.pmid)) { seen2.add(p.pmid); snap.push(p); }
+      snap.sort((a,b) => {
+        const da = `${a.pubDate.y}-${String(a.pubDate.m).padStart(2,'0')}-${String(a.pubDate.d).padStart(2,'0')}`;
+        const db = `${b.pubDate.y}-${String(b.pubDate.m).padStart(2,'0')}-${String(b.pubDate.d).padStart(2,'0')}`;
+        return db.localeCompare(da);
+      });
+      currentPapers = snap;
+      renderChips();
+      renderList(true);
+      setStatus(`已加载 ${snap.length} 篇 · ${i+1}/${JOURNALS.length} 期刊`, '');
+    }
+  }
+
+  const fillEnd = document.getElementById('loadFill');
+  if (fillEnd) fillEnd.style.width = '100%';
+
+  const seen = new Set();
+  const dedup = [];
+  allPapers.forEach(p => {
+    if (!seen.has(p.pmid)) { seen.add(p.pmid); dedup.push(p); }
+  });
+  dedup.sort((a,b) => {
+    const pad = (v) => String(v || '').padStart(2, '0');
+    const da = `${a.pubDate.y}-${pad(a.pubDate.m)}-${pad(a.pubDate.d)}`;
+    const db = `${b.pubDate.y}-${pad(b.pubDate.m)}-${pad(b.pubDate.d)}`;
+    return db.localeCompare(da);
+  });
+
+  currentPapers = dedup;
+
+  btn.disabled = false;
+  btn.textContent = '↻ 拉取 / 刷新';
+  emptyEl.innerHTML = '';
+
+  saveJSON(cacheKey, { papers: dedup, fetchedAt: Date.now() });
+
+  const banner = document.getElementById('banner');
+  if (failed.length > 0) {
+    banner.innerHTML = `<div class="banner">⚠ ${failed.length} 个期刊加载失败：${failed.join('、')}。可稍后再试。</div>`;
+  } else {
+    banner.innerHTML = '';
+  }
+
+  setStatus(`${dedup.length} 篇 · ${new Date().toLocaleString('zh-CN')} 更新`, 'ok');
+  renderAll();
+  setupObserver();
+}
+
+function setStatus(text, cls = '') {
+  const el = document.getElementById('statusText');
+  el.textContent = text;
+  el.parentElement.className = 'status ' + cls;
+  updateTransBadge();
+}
+
+// ============ 渲染 ============
+function renderChips() {
+  const topicEl = document.getElementById('topicChips');
+  const methodEl = document.getElementById('methodChips');
+  const journalEl = document.getElementById('journalChips');
+
+  const topicCounts = {}, methodCounts = {}, journalCounts = {};
+  currentPapers.forEach(p => {
+    (p.topics || []).forEach(t => topicCounts[t] = (topicCounts[t] || 0) + 1);
+    (p.methods || []).forEach(m => methodCounts[m] = (methodCounts[m] || 0) + 1);
+    if (p.journalId) journalCounts[p.journalId] = (journalCounts[p.journalId] || 0) + 1;
+  });
+
+  topicEl.innerHTML = TOPIC_RULES
+    .filter(r => topicCounts[r.id] > 0)
+    .map(r => `<button class="chip ${uiState.topics.includes(r.id)?'active':''}" data-dim="topics" data-id="${r.id}" data-group="${r.group}">${r.name}<span class="count">${topicCounts[r.id]}</span></button>`)
+    .join('');
+
+  methodEl.innerHTML = METHOD_RULES
+    .filter(r => methodCounts[r.id] > 0)
+    .map(r => `<button class="chip ${uiState.methods.includes(r.id)?'active':''}" data-dim="methods" data-id="${r.id}">${r.name}<span class="count">${methodCounts[r.id]}</span></button>`)
+    .join('');
+
+  const groups = ['core','physio','clinic','other'];
+  let html = '';
+  groups.forEach(g => {
+    const js = JOURNALS.filter(j => j.group === g);
+    js.forEach(j => {
+      const count = journalCounts[j.id] || 0;
+      const empty = count === 0;
+      const active = uiState.journals.includes(j.id);
+      html += `<button class="chip ${active?'active':''} ${empty?'empty':''}" data-dim="journals" data-id="${j.id}" title="${j.zh} · ${j.abbr}${empty?' · 本月无论文':''}">${j.short}<span class="count">${count}</span></button>`;
+    });
+  });
+  journalEl.innerHTML = html;
+
+  // 期刊 toggle 文案：已选 X 本 / 全部 N 本
+  const journalToggle = document.getElementById('journalToggle');
+  if (journalToggle) {
+    const totalAvailable = JOURNALS.filter(j => (journalCounts[j.id] || 0) > 0).length;
+    const selected = uiState.journals.length;
+    const expanded = journalEl.style.display !== 'none';
+    const arrow = expanded ? '▴' : '▾';
+    journalToggle.textContent = selected > 0
+      ? `已选 ${selected} 本 ${arrow}`
+      : `全部 ${totalAvailable} 本 ${arrow}`;
+    journalToggle.classList.toggle('has-selected', selected > 0);
+  }
+
+  document.querySelectorAll('.chip[data-dim]').forEach(el => {
+    el.addEventListener('click', () => {
+      if (el.classList.contains('empty')) return;
+      const dim = el.dataset.dim;
+      const id = el.dataset.id;
+      const arr = uiState[dim];
+      const idx = arr.indexOf(id);
+      if (idx >= 0) arr.splice(idx, 1); else arr.push(id);
+      saveJSON(KEY_STATE, uiState);
+      renderChips();
+      renderList();
+    });
+  });
+}
+
+function filterPapers() {
+  return currentPapers.filter(p => {
+    if (uiState.favOnly && !favorites.has(p.pmid)) return false;
+    if (uiState.topics.length && !uiState.topics.every(t => (p.topics || []).includes(t))) return false;
+    if (uiState.methods.length && !uiState.methods.every(m => (p.methods || []).includes(m))) return false;
+    if (uiState.journals.length && !uiState.journals.includes(p.journalId)) return false;
+    return true;
+  });
+}
+
+function renderList(skipObserver) {
+  const list = filterPapers();
+  document.getElementById('countText').textContent = `共 ${list.length} 篇`;
+  document.getElementById('favCount').textContent = `(${favorites.size})`;
+
+  const listEl = document.getElementById('papersList');
+  if (list.length === 0) {
+    listEl.innerHTML = `<div class="empty">当前筛选条件下没有论文。${currentPapers.length === 0 ? '请点"拉取 / 刷新"加载数据' : '试试清空筛选'}</div>`;
+    return;
+  }
+
+  listEl.innerHTML = list.map(p => renderPaper(p)).join('');
+
+  document.querySelectorAll('.paper-star').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const pmid = btn.dataset.pmid;
+      if (favorites.has(pmid)) favorites.delete(pmid); else favorites.add(pmid);
+      saveJSON(KEY_FAV, [...favorites]);
+      btn.classList.toggle('on');
+      btn.textContent = favorites.has(pmid) ? '★' : '☆';
+      btn.closest('.paper').classList.toggle('favorited');
+      document.getElementById('favCount').textContent = `(${favorites.size})`;
+    });
+  });
+  document.querySelectorAll('.paper-expand').forEach(el => {
+    el.addEventListener('click', () => {
+      const card = el.closest('.paper');
+      card.classList.toggle('expanded');
+      uiState.expanded[card.dataset.pmid] = card.classList.contains('expanded');
+      saveJSON(KEY_STATE, uiState);
+      el.textContent = card.classList.contains('expanded') ? '收起摘要 ▲' : '展开摘要 ▼';
+    });
+  });
+
+  if (!skipObserver) setupObserver();
+}
+
+function renderPaper(p) {
+  const jnl = JOURNALS.find(j => j.id === p.journalId);
+  const jnlShort = jnl ? jnl.short : (p.journalAbbr || '?');
+  const date = [p.pubDate.y, p.pubDate.m, p.pubDate.d].filter(Boolean).join('-');
+  const authors = p.authors.length > 0
+    ? (p.authors.length > 3 ? `${p.authors.slice(0,3).join(', ')}, 等` : p.authors.join(', '))
+    : '';
+  const zh = translations[p.pmid];
+  const favOn = favorites.has(p.pmid);
+  const expanded = uiState.expanded[p.pmid];
+
+  const topicTags = (p.topics || []).map(t => {
+    const rule = TOPIC_RULES.find(r => r.id === t);
+    return rule ? `<span class="tag" data-group="${rule.group}">${rule.name}</span>` : '';
+  }).join('');
+  const methodTags = (p.methods || []).map(m => {
+    const rule = METHOD_RULES.find(r => r.id === m);
+    return rule ? `<span class="tag method">${rule.name}</span>` : '';
+  }).join('');
+  const jnlTag = jnl ? `<span class="tag journal">${jnl.short}</span>` : '';
+
+  const pubmedUrl = `https://pubmed.ncbi.nlm.nih.gov/${p.pmid}/`;
+  const doiUrl = p.doi ? `https://doi.org/${p.doi}` : '';
+
+  const abstractHtml = p.abstract
+    ? p.abstract.split('\n\n').map(para => `<p>${escapeHtml(para)}</p>`).join('')
+    : '<p style="color:var(--muted)">暂无摘要</p>';
+
+  const zhHtml = zh
+    ? `<div class="paper-title-zh">${escapeHtml(zh)}</div>`
+    : (failedTranslations.has(p.pmid) ? '' : `<div class="paper-title-zh loading">翻译中</div>`);
+
+  return `
+    <div class="paper${favOn ? ' favorited' : ''}${expanded ? ' expanded' : ''}" data-pmid="${p.pmid}">
+      <div class="paper-head">
+        <div class="paper-titles">
+          <div class="paper-title">${escapeHtml(p.title)}</div>
+          ${zhHtml}
+        </div>
+        <button class="paper-star ${favOn ? 'on' : ''}" data-pmid="${p.pmid}" title="收藏">${favOn ? '★' : '☆'}</button>
+      </div>
+      <div class="paper-meta">
+        <span class="journal">${jnlShort}</span>
+        ${date ? `<span class="sep"></span><span>${date}</span>` : ''}
+        ${authors ? `<span class="sep"></span><span>${escapeHtml(authors)}</span>` : ''}
+        <span class="sep"></span><a href="${pubmedUrl}" target="_blank">PMID ${p.pmid}</a>
+        ${doiUrl ? `<span class="sep"></span><a href="${doiUrl}" target="_blank">DOI</a>` : ''}
+      </div>
+      <div class="paper-tags">
+        ${topicTags}${methodTags}${jnlTag}
+      </div>
+      <div class="paper-expand">${expanded ? '收起摘要 ▲' : '展开摘要 ▼'}</div>
+      <div class="paper-abstract">${abstractHtml}</div>
+    </div>
+  `;
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+function renderAll() {
+  renderChips();
+  renderList();
+}
+
+// ============ 主题切换 ============
+function applyTheme(mode) {
+  if (mode === 'auto') {
+    document.documentElement.removeAttribute('data-theme');
+  } else {
+    document.documentElement.setAttribute('data-theme', mode);
+  }
+  const btn = document.getElementById('themeBtn');
+  btn.textContent = mode === 'light' ? '☀' : (mode === 'dark' ? '☾' : '◐');
+  btn.title = `主题：${mode === 'light' ? '亮色' : mode === 'dark' ? '深色' : '跟随系统'}`;
+}
+
+// ============ 粘性筛选栏紧凑 ============
+function setupStickyCompact() {
+  const nav = document.getElementById('stickyNav');
+  const sentinel = document.getElementById('stickySentinel');
+  if (!nav || !sentinel) return;
+  let compact = false;
+  let ticking = false;
+  // 滞后带：sentinel 底边跌出视口 16px 才开启 compact，回到视口内才关闭
+  // 避免临界点 scrollY 微抖导致类反复切换产生震荡
+  function check() {
+    const rect = sentinel.getBoundingClientRect();
+    if (!compact && rect.bottom < -16) {
+      compact = true;
+      nav.classList.add('compact');
+    } else if (compact && rect.bottom > 0) {
+      compact = false;
+      nav.classList.remove('compact');
+    }
+    ticking = false;
+  }
+  window.addEventListener('scroll', () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(check);
+  }, { passive: true });
+  check();
+}
+
+// ============ 初始化 ============
+function init() {
+  // 清理已移除的筛选状态（如 V2 → V3 删掉的 aquatic）
+  const validTopics = new Set(TOPIC_RULES.map(r => r.id));
+  const validMethods = new Set(METHOD_RULES.map(r => r.id));
+  uiState.topics = uiState.topics.filter(t => validTopics.has(t));
+  uiState.methods = uiState.methods.filter(m => validMethods.has(m));
+
+  // 主题
+  const savedTheme = localStorage.getItem(KEY_THEME) || 'auto';
+  applyTheme(savedTheme);
+  document.getElementById('themeBtn').addEventListener('click', () => {
+    const cur = localStorage.getItem(KEY_THEME) || 'auto';
+    const next = cur === 'auto' ? 'light' : (cur === 'light' ? 'dark' : 'auto');
+    localStorage.setItem(KEY_THEME, next);
+    applyTheme(next);
+  });
+
+  // 设置面板
+  const modal = document.getElementById('settingsModal');
+  document.getElementById('settingsBtn').addEventListener('click', () => {
+    document.getElementById('baiduAppid').value = baiduCreds.appid || '';
+    document.getElementById('baiduKey').value = baiduCreds.key || '';
+    modal.classList.add('open');
+  });
+  document.getElementById('settingsCancel').addEventListener('click', () => modal.classList.remove('open'));
+  document.getElementById('settingsSave').addEventListener('click', () => {
+    baiduCreds = {
+      appid: document.getElementById('baiduAppid').value.trim(),
+      key: document.getElementById('baiduKey').value.trim(),
+    };
+    saveJSON(KEY_BAIDU, baiduCreds);
+    modal.classList.remove('open');
+  });
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) modal.classList.remove('open');
+  });
+
+  // 月份下拉
+  const sel = document.getElementById('monthSelect');
+  sel.innerHTML = monthOptions().map(o => `<option value="${o.value}">${o.label}</option>`).join('');
+  currentMonth = ym(new Date());
+  sel.value = currentMonth;
+  sel.addEventListener('change', () => {
+    currentMonth = sel.value;
+    transStats = { ok: 0, fail: 0 };
+    const cached = loadJSON(KEY_PAPERS(currentMonth), null);
+    if (cached && cached.papers) {
+      currentPapers = cached.papers;
+      reclassifyAll();
+      renderAll();
+      setupObserver();
+      setStatus(`${cached.papers.length} 篇 · 缓存于 ${new Date(cached.fetchedAt).toLocaleString('zh-CN')}`, 'ok');
+    } else {
+      currentPapers = [];
+      renderAll();
+      setStatus('此月份尚未加载', '');
+      document.getElementById('emptyState').innerHTML = `<div class="empty"><p style="margin-bottom:14px">${sel.options[sel.selectedIndex].text}尚未加载</p><button class="btn-primary" onclick="fetchAll(true)">立即加载</button></div>`;
+    }
+  });
+
+  document.getElementById('refreshBtn').addEventListener('click', () => fetchAll(true));
+  document.getElementById('favOnly').checked = uiState.favOnly;
+  document.getElementById('favOnly').addEventListener('change', (e) => {
+    uiState.favOnly = e.target.checked;
+    saveJSON(KEY_STATE, uiState);
+    renderList();
+  });
+  document.getElementById('clearFilters').addEventListener('click', () => {
+    uiState.topics = []; uiState.methods = []; uiState.journals = [];
+    saveJSON(KEY_STATE, uiState);
+    renderChips();
+    renderList();
+  });
+
+  // 期刊抽屉：点击 toggle 展开/收起
+  const journalToggle = document.getElementById('journalToggle');
+  const journalChips = document.getElementById('journalChips');
+  journalToggle.addEventListener('click', () => {
+    const hidden = journalChips.style.display === 'none';
+    journalChips.style.display = hidden ? 'flex' : 'none';
+    renderChips();
+  });
+
+  setupStickyCompact();
+
+  // 初次加载
+  const cached = loadJSON(KEY_PAPERS(currentMonth), null);
+  if (cached && cached.papers) {
+    currentPapers = cached.papers;
+    reclassifyAll();
+    saveJSON(KEY_PAPERS(currentMonth), { papers: currentPapers, fetchedAt: cached.fetchedAt });
+    renderAll();
+    setupObserver();
+    setStatus(`${cached.papers.length} 篇 · 缓存于 ${new Date(cached.fetchedAt).toLocaleString('zh-CN')}`, 'ok');
+  } else {
+    renderAll();
+    setStatus('本月尚未加载', '');
+    document.getElementById('emptyState').innerHTML = `<div class="empty"><p style="margin-bottom:14px">本月尚未加载任何数据</p><button class="btn-primary" onclick="fetchAll(true)">开始加载</button></div>`;
+  }
+  updateTransBadge();
+}
+
+init();
+</script>
+</body>
+</html>
